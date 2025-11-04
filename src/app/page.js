@@ -61,7 +61,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
           <div className="flex items-center gap-2">
             <Utensils className="text-red-500" size={26} />
-            <h1 className="text-2xl font-bold text-gray-800">TastyBite</h1>
+             <Link href={"/"}><h1 className="text-2xl font-bold text-gray-800">MayukhCake</h1></Link>   
           </div>
 
           <div className="flex items-center gap-4">
@@ -125,9 +125,9 @@ export default function Home() {
 
         <div className="relative">
           <img
-            src="/hero-food.png"
+            src="/pizza.png"
             alt="Delicious pizza and cake"
-            className="w-[400px] sm:w-[480px] rounded-3xl shadow-xl object-cover"
+            className="w-[400px] sm:w-[480px] rounded-3xl object-cover"
           />
           <div className="absolute -top-4 -left-4 bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md animate-bounce">
             20% OFF Today
@@ -140,14 +140,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-2xl font-bold mb-6">Explore by Category</h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
             {[
-              { name: "Pizza", img: "/pizza.jpg" },
-              { name: "Burger", img: "/burger.jpg" },
-              { name: "Dessert", img: "/dessert.jpg" },
-              { name: "Drinks", img: "/drinks.jpg" },
-              { name: "Chinese", img: "/chinese.jpg" },
-              { name: "Indian", img: "/indian.jpg" },
+              { name: "Pizza", img: "/pizza.png" },
+              { name: "Cake", img: "/cake.webp" },
+              { name: "Chocolate", img: "/chocolate.webp" },
             ].map((cat) => (
               <div
                 key={cat.name}
@@ -177,7 +174,7 @@ export default function Home() {
       <footer className="bg-gray-100 py-6 mt-12 border-t border-gray-200">
         <div className="max-w-6xl mx-auto text-center text-gray-600 text-sm">
           © {new Date().getFullYear()}{" "}
-          <span className="font-semibold text-gray-700">TastyBite</span>. Order happiness, one bite at a time ❤️
+          <span className="font-semibold text-gray-700">MayukhCake</span>. Order happiness, one bite at a time ❤️
         </div>
       </footer>
     </div>

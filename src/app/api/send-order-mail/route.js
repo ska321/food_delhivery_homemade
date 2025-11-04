@@ -28,24 +28,24 @@ export async function POST(req) {
 
     // Mail to Customer
     const customerMail = {
-      from: `"TastyBite" <${process.env.EMAIL_SERVER_USER}>`,
+      from: `"MayukhCake" <${process.env.EMAIL_SERVER_USER}>`,
       to: customerEmail,
-      subject: "🎉 Your TastyBite Order Confirmation!",
+      subject: "🎉 Your MayukhCake Order Confirmation!",
       html: `
         <h2>Hi ${customerName},</h2>
-        <p>Thank you for ordering from <b>TastyBite</b>!</p>
+        <p>Thank you for ordering from <b>MayukhCake</b>!</p>
         <p><b>Order ID:</b> ${orderId}</p>
         <p><b>Order Total:</b> ₹${totalAmount}</p>
         <p><b>Items:</b></p>
         <ul>${itemList}</ul>
         <p>We'll deliver your order soon 🚀</p>
-        <br><p>— The TastyBite Team 🍕</p>
+        <br><p>— The MayukhCake Team 🍕</p>
       `,
     };
 
     // Mail to Admin
     const adminMail = {
-      from: `"TastyBite Orders" <${process.env.EMAIL_SERVER_USER}>`,
+      from: `"MayukhCake Orders" <${process.env.EMAIL_SERVER_USER}>`,
       to: adminEmail,
       subject: `📦 New Order Received - ${customerName}`,
       html: `

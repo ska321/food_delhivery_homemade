@@ -141,9 +141,9 @@ export default function Cart() {
         <h2 className="text-2xl sm:text-3xl font-bold text-green-600 mt-4">
           Order Placed Successfully!
         </h2>
-        <p className="text-gray-500 mt-2 text-sm sm:text-base">
+        {/* <p className="text-gray-500 mt-2 text-sm sm:text-base">
           Redirecting to My Account...
-        </p>
+        </p> */}
       </div>
     );
   }
@@ -156,7 +156,7 @@ export default function Cart() {
           <Link href="/" className="flex items-center gap-2">
             <Utensils className="text-red-500" size={24} />
             <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
-              TastyBite
+              MayukhCake
             </h1>
           </Link>
           <Link
@@ -334,7 +334,7 @@ export default function Cart() {
       <footer className="bg-gray-100 border-t border-gray-200 py-6 mt-12">
         <div className="max-w-6xl mx-auto text-center text-gray-600 text-sm">
           © {new Date().getFullYear()}{" "}
-          <span className="font-semibold">TastyBite</span>. Fast, Fresh &
+          <span className="font-semibold">MayukhCake</span>. Fast, Fresh &
           Delicious 🍕
         </div>
       </footer>
