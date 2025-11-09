@@ -21,6 +21,7 @@ export default function Cart() {
   const [savedAddresses, setSavedAddresses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [newAddress, setNewAddress] = useState(""); // ✅ added state to handle new address input
 
   useEffect(() => {
     if (status === "unauthenticated") router.push("/login");
@@ -66,7 +67,10 @@ export default function Cart() {
   }
 
   async function placeOrder() {
-    if (!customer.name || !customer.phone || !customer.address)
+    const addressToUse =
+      customer.address === "__new__" ? newAddress : customer.address;
+
+    if (!customer.name || !customer.phone || !addressToUse)
       return alert("⚠️ Please fill all delivery details");
 
     setLoading(true);
@@ -84,7 +88,10 @@ export default function Cart() {
         body: JSON.stringify({
           userId: session.user.id,
           email: session.user.email,
-          customer,
+          customer: {
+            ...customer,
+            address: addressToUse,
+          },
           items: formattedItems,
         }),
       });
@@ -92,6 +99,7 @@ export default function Cart() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to place order");
 
+      // Save customer details with address
       await fetch("/api/customer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -100,7 +108,7 @@ export default function Cart() {
           name: customer.name,
           email: customer.email || session.user.email,
           phone: customer.phone,
-          address: customer.address,
+          address: addressToUse,
         }),
       });
 
@@ -141,9 +149,6 @@ export default function Cart() {
         <h2 className="text-2xl sm:text-3xl font-bold text-green-600 mt-4">
           Order Placed Successfully!
         </h2>
-        {/* <p className="text-gray-500 mt-2 text-sm sm:text-base">
-          Redirecting to My Account...
-        </p> */}
       </div>
     );
   }
@@ -156,7 +161,7 @@ export default function Cart() {
           <Link href="/" className="flex items-center gap-2">
             <Utensils className="text-red-500" size={24} />
             <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
-              MayukhCake
+              OurFoodie
             </h1>
           </Link>
           <Link
@@ -282,9 +287,11 @@ export default function Cart() {
                 {savedAddresses.length > 0 && (
                   <select
                     value={customer.address}
-                    onChange={(e) =>
-                      setCustomer({ ...customer, address: e.target.value })
-                    }
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setCustomer({ ...customer, address: value });
+                      if (value === "__new__") setNewAddress("");
+                    }}
                     className="sm:col-span-2 border border-gray-200 rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
                   >
                     <option value="">Select Saved Address</option>
@@ -297,17 +304,24 @@ export default function Cart() {
                   </select>
                 )}
 
+                {/* Textarea now works properly when adding new address */}
                 {(savedAddresses.length === 0 ||
-                  customer.address === "" ||
-                  customer.address === "__new__") && (
+                  customer.address === "__new__" ||
+                  customer.address === "") && (
                   <textarea
                     placeholder="Enter New Delivery Address"
                     value={
-                      customer.address === "__new__" ? "" : customer.address
+                      customer.address === "__new__"
+                        ? newAddress
+                        : customer.address
                     }
-                    onChange={(e) =>
-                      setCustomer({ ...customer, address: e.target.value })
-                    }
+                    onChange={(e) => {
+                      if (customer.address === "__new__") {
+                        setNewAddress(e.target.value);
+                      } else {
+                        setCustomer({ ...customer, address: e.target.value });
+                      }
+                    }}
                     className="sm:col-span-2 border border-gray-200 rounded-lg p-3 focus:ring-2 focus:ring-red-400 resize-none outline-none"
                     rows="3"
                   />
@@ -334,7 +348,7 @@ export default function Cart() {
       <footer className="bg-gray-100 border-t border-gray-200 py-6 mt-12">
         <div className="max-w-6xl mx-auto text-center text-gray-600 text-sm">
           © {new Date().getFullYear()}{" "}
-          <span className="font-semibold">MayukhCake</span>. Fast, Fresh &
+          <span className="font-semibold">OurFoodie</span>. Fast, Fresh &
           Delicious 🍕
         </div>
       </footer>

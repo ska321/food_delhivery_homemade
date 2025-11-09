@@ -63,7 +63,14 @@ export default function MyAccount() {
         try {
           const res = await fetch(`/api/orders?userId=${session.user.id}`);
           const data = await res.json();
-          if (res.ok) setOrders(data);
+          if (res.ok) {
+            // ✅ Sort orders so that the latest appears first
+            const sortedOrders = [...data].sort(
+              (a, b) =>
+                new Date(b.createdAt || b._id) - new Date(a.createdAt || a._id)
+            );
+            setOrders(sortedOrders);
+          }
         } catch (err) {
           console.error("Error fetching orders:", err);
         }
@@ -140,7 +147,9 @@ export default function MyAccount() {
   if (status === "loading" || loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-gray-50">
-        <p className="text-gray-600 text-lg animate-pulse">Loading your account...</p>
+        <p className="text-gray-600 text-lg animate-pulse">
+          Loading your account...
+        </p>
       </div>
     );
   }
@@ -162,7 +171,9 @@ export default function MyAccount() {
           >
             <ArrowLeft className="w-5 h-5 text-gray-700" />
           </button>
-          <h1 className="text-lg md:text-2xl font-bold text-gray-800">My Account</h1>
+          <h1 className="text-lg md:text-2xl font-bold text-gray-800">
+            My Account
+          </h1>
         </div>
         <button
           onClick={handleLogout}
@@ -274,7 +285,9 @@ export default function MyAccount() {
                   ))}
 
                   <div>
-                    <label className="text-gray-600 text-sm font-medium">Email</label>
+                    <label className="text-gray-600 text-sm font-medium">
+                      Email
+                    </label>
                     <input
                       type="email"
                       value={userData.email}
@@ -313,7 +326,8 @@ export default function MyAccount() {
 
                   {userData.joinedAt && (
                     <p className="text-sm text-gray-500 mt-3 text-center">
-                      Joined on: {new Date(userData.joinedAt).toLocaleDateString()}
+                      Joined on:{" "}
+                      {new Date(userData.joinedAt).toLocaleDateString()}
                     </p>
                   )}
                 </div>
@@ -344,11 +358,17 @@ export default function MyAccount() {
                         className="border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition duration-200 bg-white"
                       >
                         <p className="text-sm text-gray-500 mb-1">
-                          🆔 <span className="font-medium">Order ID:</span> {order._id}
+                          🆔 <span className="font-medium">Order ID:</span>{" "}
+                          {order._id}
                         </p>
-                        <p className="text-sm text-gray-500 mb-2">
-                          🚚 <span className="font-medium">Status:</span>{" "}
-                          {order.status}
+                        <p
+                          className={`text-sm font-medium mb-2 ${
+                            order.status?.toLowerCase() === "pending"
+                              ? "text-red-500"
+                              : "text-green-600"
+                          }`}
+                        >
+                          🚚 Status: {order.status}
                         </p>
 
                         <div className="space-y-3 mt-3">

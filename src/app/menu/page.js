@@ -61,7 +61,7 @@ export default function Menu() {
           {/* Logo Section */}
           <div className="flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start">
             <Utensils className="text-red-500" size={26} />
-            <Link href={"/"}><h1 className="text-2xl font-bold text-gray-800">MayukhCake</h1></Link>   
+            <Link href={"/"}><h1 className="text-2xl font-bold text-gray-800">OurFoodie</h1></Link>   
           </div>
 
           {/* Search & Cart Section */}
@@ -130,7 +130,7 @@ export default function Menu() {
       <footer className="bg-white border-t border-gray-100 py-6 mt-6 w-full">
         <div className="max-w-6xl mx-auto text-center text-gray-500 text-sm px-4">
           © {new Date().getFullYear()}{" "}
-          <span className="font-semibold text-gray-700">MayukhCake</span>.  
+          <span className="font-semibold text-gray-700">OurFoodie</span>.  
           Made with ❤️ by Akash.
         </div>
       </footer>

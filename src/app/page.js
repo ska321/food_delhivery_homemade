@@ -61,7 +61,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
           <div className="flex items-center gap-2">
             <Utensils className="text-red-500" size={26} />
-             <Link href={"/"}><h1 className="text-2xl font-bold text-gray-800">MayukhCake</h1></Link>   
+             <Link href={"/"}><h1 className="text-2xl font-bold text-gray-800">OurFoodie</h1></Link>   
           </div>
 
           <div className="flex items-center gap-4">
@@ -174,7 +174,7 @@ export default function Home() {
       <footer className="bg-gray-100 py-6 mt-12 border-t border-gray-200">
         <div className="max-w-6xl mx-auto text-center text-gray-600 text-sm">
           © {new Date().getFullYear()}{" "}
-          <span className="font-semibold text-gray-700">MayukhCake</span>. Order happiness, one bite at a time ❤️
+          <span className="font-semibold text-gray-700">OurFoodie</span>. Order happiness, one bite at a time ❤️
         </div>
       </footer>
     </div>

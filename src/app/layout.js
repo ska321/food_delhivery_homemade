@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "MayukhCake",
+  title: "OurFoodie",
   description: "Fresh Homemade Pizza & Cakes — Delivered Fast",
 };
 
