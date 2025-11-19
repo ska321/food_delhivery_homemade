@@ -34,7 +34,7 @@ export async function POST(req) {
 
     // 📨 Email content
     const mailOptions = {
-      from: `"Tasty Bite 🍕" <${process.env.EMAIL_SERVER_USER}>`,
+      from: `"OurFoodie 🍕" <${process.env.EMAIL_SERVER_USER}>`,
       to: recipient,
       subject: `Your Order #${orderId} Status Update`,
       html: `

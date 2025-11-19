@@ -73,7 +73,7 @@ export async function PUT(req, { params }) {
 
     // 📨 Define email content
     const mailOptions = {
-      from: `"Tasty Bite 🍕" <${process.env.EMAIL_SERVER_USER}>`,
+      from: `"OurFoodie 🍕" <${process.env.EMAIL_SERVER_USER}>`,
       to: customerEmail,
       subject: `Your Order #${id} Status Update`,
       html: `

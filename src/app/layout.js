@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "OurFoodie",
-  description: "Fresh Homemade Pizza & Cakes — Delivered Fast",
+  description: "Fresh Homemade OurFoodies — Delivered Fast",
 };
 
 export default function RootLayout({ children }) {
